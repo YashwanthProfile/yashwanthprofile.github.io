@@ -93,20 +93,21 @@ work:
     date_end: 2025-03-21
     summary: |2-
       Responsibilities include:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - position: Backend Software Engineer
-    company_name: X
+      - Evaluating drone control algorithms from the Indian teams participating in CIEDS-DRDO international drone swarm rescue challenge.
+      - Mentoring 10 teams, driving regular progress reviews and assessing performance for three evaluation phases
+      - Collaborating with international evaluators to streamline the evaluation process
+  - position: Teaching Assistant
+    company_name: Indian Insitute of Technology Hyderbad
     company_url: ''
     company_logo: ''
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      Responsibilities include:
-      - Migrated infrastructure to a new data center
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+    date_start: 2024-01-01
+    date_end: 2024-08-01
+    summary: | 
+      ME05060 - Spacecraft dynamics and Control
+      # Responsibilities include:
+      # - Migrated infrastructure to a new data center
+      # - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      # - lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
@@ -184,4 +185,4 @@ awards:
 
 ## About Me
 
-Hi ! I'm Yashwanth, an engineer and researcher working in mathematical modeling and intelligent control of robotic systems. I work at the intersection of robotics, AI and physics-driven simulation to build platforms that aid self-learning for adaptive machinces.
+Hi ! I'm Yashwanth, an engineer and researcher working in mathematical modeling and intelligent control of robotic systems. I work at the intersection of robotics, AI and physics-driven simulation to build platforms that aid adaptive machinces for self-learning.
