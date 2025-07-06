@@ -47,7 +47,8 @@ profiles:
   #   url: https://orcid.org/
 
 interests:
-  - Artificial Intelligence
+  - Complex Systems 
+  - Non-linear Dynamics
   - Reinforcement Learning
   - Scientific Computing
 

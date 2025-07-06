@@ -6,11 +6,11 @@
 # Appearance
 appearance:
   mode: system
-  color: emerald
+  color: blue #emerald
 
 # SEO
 marketing:
-  seo:
+  seo:  
     site_type: Person
     local_business_type: ''
     org_name: ''
@@ -35,7 +35,7 @@ header:
     show_search: true
     show_theme_chooser: true
     logo:
-      text: "Your Name"
+      text: "Yashwanth"
 
 # Site footer
 footer:
