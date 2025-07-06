@@ -84,8 +84,8 @@ education:
       - lorem ipsum dolor sit amet, consectetur adipiscing elit
       - lorem ipsum dolor sit amet, consectetur adipiscing elit
 work:
-  - position: Director of Cloud Infrastructure
-    company_name: GenCoin
+  - position: Drone swarm code evaluator
+    company_name: CIEDS – Centre Interdisciplinaire d’Etudes pour la Défense et la Sécurité
     company_url: ''
     company_logo: ''
     date_start: 2021-01-01
