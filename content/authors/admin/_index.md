@@ -57,33 +57,40 @@ education:
     institution: Indian Institute of Technology Hyderbad
     date_start: 2024-07-15
     # date_end: 2020-12-31
+    #summary: |
+    #  Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
+    #button:
+    #  text: 'Read Thesis'
+    #  url: 'https://example.com'
+  - area: MTech Thermo-Fluid Engineering
+    institution: Indian Institute of Technology Hyderbad
+    date_start: 2022-07-15
+    date_end: 2024-08-01
     summary: |
-      Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
-    button:
-      text: 'Read Thesis'
-      url: 'https://example.com'
-  - area: MEng Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      GPA: 3.8/4.0
+      GPA: 9.57/10.0
+
+      Work:
+      - Developed a novel flow control facility for testing stability and performance of aerial vehicles.
+      - Secured research grant for this project
+      - Developed a novel flow control facility for testing stability and performance of aerial vehicles. • Secured research grant for this project
+
 
       Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - area: BSc Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    # date_end: 2020-12-31
+      - Computational Fluid Dynamics
+      - Turbulence flow and modeling
+      - State Estimation
+      - Probability
+  - area: BEng Mechanical Engineering
+    institution: Global Academy of Technology
+    date_start: 2016-07-14
+    date_end: 2020-08-01
     summary: |
-      GPA: 3.4/4.0
+      GPA: 7.75/10.0
       
-      Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+    # Courses included:
+    # - lorem ipsum dolor sit amet, consectetur adipiscing elit
+    # - lorem ipsum dolor sit amet, consectetur adipiscing elit
+    # - lorem ipsum dolor sit amet, consectetur adipiscing elit
 work:
   - position: Drone swarm code evaluator
     company_name: CIEDS – Centre Interdisciplinaire d’Etudes pour la Défense et la Sécurité
@@ -104,10 +111,6 @@ work:
     date_end: 2024-08-01
     summary: | 
       ME05060 - Spacecraft dynamics and Control
-      # Responsibilities include:
-      # - Migrated infrastructure to a new data center
-      # - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      # - lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
