@@ -88,8 +88,8 @@ work:
     company_name: CIEDS – Centre Interdisciplinaire d’Etudes pour la Défense et la Sécurité
     company_url: ''
     company_logo: ''
-    date_start: 2021-01-01
-    date_end: ''
+    date_start: 2024-12-01
+    date_end: 2025-03-21
     summary: |2-
       Responsibilities include:
       - lorem ipsum dolor sit amet, consectetur adipiscing elit
@@ -183,4 +183,4 @@ awards:
 
 ## About Me
 
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Hi ! I'm Yashwanth, an engineer and researcher working in mathematical modeling and intelligent control of robotic systems. I work at the intersection of robotics, AI and physics-driven simulation to build platforms that aid self-learning for adaptive machinces.
