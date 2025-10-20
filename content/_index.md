@@ -24,7 +24,7 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: pexels-katlovessteve-567985.jpg #stacked-peaks.svg
+          filename: annual-rings-3212803_1280.jpg #stacked-peaks.svg
           filters:
             brightness: 1.0
           size: cover
