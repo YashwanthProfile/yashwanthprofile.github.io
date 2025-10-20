@@ -22,7 +22,7 @@ highlight_name: true
 # Role/position/tagline
 role: Research Scholar
 
-# Organizations/Affiliations to display in Biography blox
+# Organizations/Affiliations to display in Biography block
 organizations:
   - name: Dynamics and Control Lab
     url: #https://openai.com/
@@ -47,37 +47,36 @@ profiles:
   #   url: https://orcid.org/
 
 interests:
-  - Complex Systems 
-  - Non-linear Dynamics
-  - Reinforcement Learning
-  - Scientific Computing
+  - Nonlinear Dynamics & Complex Systems 
+  - Robotics & Optimal Control Theory
+  - Data-driven modeling & Reinforcement Learning
 
 education:
-  - area: PhD Reinforcement Learning & Robotics
-    institution: Indian Institute of Technology Hyderbad
+  - area: PhD Robotics & Control
+    institution: Indian Institute of Technology Hyderabad
     date_start: 2024-07-15
     # date_end: 2020-12-31
-    #summary: |
+    # summary: |
     #  Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
     #button:
     #  text: 'Read Thesis'
     #  url: 'https://example.com'
   - area: MTech Thermo-Fluid Engineering
-    institution: Indian Institute of Technology Hyderbad
+    institution: Indian Institute of Technology Hyderabad
     date_start: 2022-07-15
     date_end: 2024-08-01
     summary: |
       GPA: 9.57/10.0
 
       Work:
-      - Developed a novel flow control facility for testing stability and performance of aerial vehicles.
+      - Developed a novel flow control facility for testing the stability and performance of aerial vehicles.
       - Secured research grant for this project
-      - Developed a novel flow control facility for testing stability and performance of aerial vehicles. • Secured research grant for this project
+      - Developed a novel flow control facility for testing the stability and performance of aerial vehicles. • Secured research grant for this project
 
 
       Courses included:
       - Computational Fluid Dynamics
-      - Turbulence flow and modeling
+      - Turbulent flow and modeling
       - State Estimation
       - Probability
   - area: BEng Mechanical Engineering
@@ -101,16 +100,16 @@ work:
     summary: |2-
       Responsibilities include:
       - Evaluating drone control algorithms from the Indian teams participating in CIEDS-DRDO international drone swarm rescue challenge.
-      - Mentoring 10 teams, driving regular progress reviews and assessing performance for three evaluation phases
+      - Mentoring 10 teams, driving regular progress reviews, and assessing performance for three evaluation phases
       - Collaborating with international evaluators to streamline the evaluation process
   - position: Teaching Assistant
-    company_name: Indian Insitute of Technology Hyderbad
+    company_name: Indian Institute of Technology Hyderabad
     company_url: ''
     company_logo: ''
     date_start: 2024-01-01
     date_end: 2024-08-01
     summary: | 
-      ME05060 - Spacecraft dynamics and Control
+      ME05060 - Spacecraft Dynamics and Control
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
@@ -163,9 +162,9 @@ awards:
     url: https://www.coursera.org/learn/neural-networks-deep-learning
     date: '2023-11-25'
     awarder: Coursera
-    icon: coursera
+    icon: Coursera
     summary: |
-      I studied the foundational concept of neural networks and deep learning. By the end, I was familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications.
+      I studied the foundational concepts of neural networks and deep learning. By the end, I was familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications.
   - title: Blockchain Fundamentals
     url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
     date: '2023-07-01'
@@ -183,7 +182,7 @@ awards:
     awarder: datacamp
     icon: datacamp
     summary: |
-      Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
+      Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate-level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
 ---
 
 ## About Me
