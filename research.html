@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research | Yashwanth</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="research">
+    <div class="site-frame">
+      <header class="topbar">
+        <a class="brandmark" id="brand-link" href="./index.html">Home</a>
+        <nav class="topnav" id="top-nav"></nav>
+      </header>
+
+      <div class="research-layout">
+        <aside class="section-jump-card">
+          <p class="section-label">Jump</p>
+          <nav class="section-jump-nav" aria-label="Research page sections">
+            <a href="#research-projects-section">Projects</a>
+            <a href="#research-publications-tile-section">Publications</a>
+          </nav>
+        </aside>
+
+        <main class="blog-layout">
+          <section class="blog-tile-section" id="research-projects-section">
+            <div class="section-heading">
+              <h2>Projects</h2>
+            </div>
+            <div id="project-grid"></div>
+          </section>
+
+          <section class="blog-tile-section" id="research-publications-tile-section">
+            <div class="section-heading">
+              <h2>Publications</h2>
+            </div>
+            <div id="research-publications-tile"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="./site-data.js"></script>
+    <script src="./research-data/research-data.js"></script>
+    <script src="./page.js"></script>
+  </body>
+</html>

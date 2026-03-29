@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yashwanth | Research Portfolio</title>
+    <meta
+      name="description"
+      content="Minimal research portfolio website for academics, researchers, and educators."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="home">
+    <div class="site-frame">
+      <header class="topbar">
+        <a class="brandmark" id="brand-link" href="./index.html">Home</a>
+        <nav class="topnav" id="top-nav">
+          <button class="theme-toggle" id="theme-toggle" type="button">Dark</button>
+        </nav>
+      </header>
+
+      <div class="page-shell">
+        <aside class="sidebar">
+          <!-- EDIT: Sidebar profile card -->
+          <div class="identity-block">
+            <div class="avatar-wrap">
+              <img
+                id="profile-photo"
+                class="avatar-image"
+                src="./yash_avatar.jpg"
+                alt="Yashwanth photo"
+              />
+            </div>
+            <p class="eyebrow" id="profile-role">Research Scholar</p>
+            <h1 id="profile-name">Yashwanth</h1>
+            <p class="lede" id="profile-tagline"></p>
+          </div>
+
+          <!-- EDIT: Sidebar affiliation -->
+          <div class="sidebar-section">
+            <p class="section-label">Affiliation</p>
+            <p id="profile-affiliation"></p>
+          </div>
+
+          <!-- EDIT: Sidebar location -->
+          <div class="sidebar-section">
+            <p class="section-label">Location</p>
+            <p id="profile-location"></p>
+          </div>
+
+          <!-- EDIT: Sidebar links -->
+          <div class="sidebar-section">
+            <p class="section-label">Links</p>
+            <ul class="link-list" id="profile-links"></ul>
+          </div>
+        </aside>
+
+        <main class="content">
+          <!-- EDIT: About section -->
+          <section class="section intro-section">
+            <p class="section-kicker">About</p>
+            <div class="section-body">
+              <p id="home-about-text">
+                This website is set up as a minimal research portfolio inspired by
+                academic homepages and teaching sites. Replace this paragraph with a
+                short biography describing your research interests, current position,
+                and the questions that motivate your work.
+              </p>
+            </div>
+          </section>
+
+          <!-- EDIT: Focus areas -->
+          <section class="section">
+            <div class="section-heading">
+              <h2>Selected Focus Areas</h2>
+            </div>
+            <div class="pill-grid">
+              <span class="pill">Optimal Control</span>
+              <span class="pill">Nonlinear Dynamics</span>
+              <span class="pill">Data-driven Learning</span>
+              <span class="pill">Robotics</span>
+              <span class="pill">Koopman Operator Theory</span>
+              <span class="pill">Flight dynamics</span>
+            </div>
+          </section>
+
+          <!-- EDIT: Homepage recent publications -->
+          <section class="section">
+            <div class="section-heading">
+              <h2>Recent Publications</h2>
+            </div>
+            <div class="stack-list" id="home-publications"></div>
+            <div class="section-tail">
+              <a
+                class="section-more-link"
+                href="./research.html#research-publications-tile-section"
+              >
+                See More
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </div>
+          </section>
+
+          <!-- EDIT: Homepage featured projects -->
+          <section class="section">
+            <div class="section-heading">
+              <h2>Projects</h2>
+            </div>
+            <div class="project-grid project-grid-featured" id="home-projects"></div>
+            <div class="section-tail">
+              <a
+                class="section-more-link"
+                href="./research.html#research-projects-section"
+              >
+                See All
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </div>
+          </section>
+
+          <!-- EDIT: Homepage recent updates -->
+          <section class="section">
+            <div class="section-heading">
+              <h2>Recent Updates</h2>
+            </div>
+            <div class="timeline-list" id="home-updates"></div>
+            <div class="section-tail">
+              <a class="section-more-link" href="./cv.html#cv-updates-section">
+                See More
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="./site-data.js"></script>
+    <script src="./research-data/research-data.js"></script>
+    <script src="./cv-data/cv-data.js"></script>
+    <script>
+      (function () {
+        var aboutNode = document.getElementById("home-about-text");
+        var brandNode = document.getElementById("brand-link");
+        var navNode = document.getElementById("top-nav");
+        var photoNode = document.getElementById("profile-photo");
+        var roleNode = document.getElementById("profile-role");
+        var nameNode = document.getElementById("profile-name");
+        var taglineNode = document.getElementById("profile-tagline");
+        var affiliationNode = document.getElementById("profile-affiliation");
+        var locationNode = document.getElementById("profile-location");
+        var linksNode = document.getElementById("profile-links");
+        var profile = window.siteData && window.siteData.profile;
+        var navigation = (window.siteData && window.siteData.navigation) || [];
+        var publicationsContainer = document.getElementById("home-publications");
+        var projectsContainer = document.getElementById("home-projects");
+        var updatesContainer = document.getElementById("home-updates");
+        var storedTheme;
+        var button = document.getElementById("theme-toggle");
+        var allProjects = (window.researchData && window.researchData.projects) || [];
+        var allPublications = (window.researchData && window.researchData.publications) || [];
+        var allUpdates = (window.cvData && window.cvData.updates) || [];
+
+        function filled(value) {
+          return Array.isArray(value) ? value.length > 0 : Boolean(value && String(value).trim());
+        }
+
+        function renderHighlightedAuthors(node, authorsText) {
+          var highlightName = profile && (profile.highlightAuthorName || profile.name);
+
+          node.textContent = "";
+          if (!filled(authorsText)) {
+            return;
+          }
+
+          if (!filled(highlightName) || authorsText.indexOf(highlightName) === -1) {
+            node.textContent = authorsText;
+            return;
+          }
+
+          authorsText.split(highlightName).forEach(function (part, index, parts) {
+            if (part) {
+              node.appendChild(document.createTextNode(part));
+            }
+
+            if (index < parts.length - 1) {
+              var strong = document.createElement("strong");
+              strong.textContent = highlightName;
+              node.appendChild(strong);
+            }
+          });
+        }
+
+        function appendActions(parent, actions) {
+          var validActions = (actions || []).filter(function (action) {
+            return filled(action.title) && filled(action.href);
+          });
+
+          if (!validActions.length) {
+            return;
+          }
+
+          var group = document.createElement("div");
+          group.className = "action-group";
+
+          validActions.forEach(function (action) {
+            var link = document.createElement("a");
+            link.className = "action-link";
+            link.href = action.href;
+            link.textContent = action.title;
+            link.style.background = action.background || "var(--action-bg)";
+            link.style.color = action.color || "var(--action-ink)";
+
+            if (action.href.indexOf("http") === 0) {
+              link.target = "_blank";
+              link.rel = "noreferrer";
+            }
+
+            group.appendChild(link);
+          });
+
+          parent.appendChild(group);
+        }
+
+        try {
+          storedTheme = localStorage.getItem("theme-preference");
+        } catch (error) {
+          storedTheme = null;
+        }
+
+        document.body.dataset.theme = storedTheme === "dark" ? "dark" : "light";
+
+        if (brandNode && profile && filled(profile.name)) {
+          brandNode.textContent = profile.name;
+        }
+
+        if (navNode && navigation.length) {
+          navigation.forEach(function (item) {
+            var link = document.createElement("a");
+            link.href = item.href;
+            link.textContent = item.label;
+            if (item.page === "home") {
+              link.className = "is-active";
+            }
+            navNode.insertBefore(link, button);
+          });
+        }
+
+        if (photoNode && profile && filled(profile.photo)) {
+          photoNode.src = profile.photo;
+          photoNode.alt = (profile.name || "Profile") + " photo";
+        }
+
+        if (roleNode && profile) {
+          roleNode.textContent = profile.role || "";
+        }
+
+        if (nameNode && profile) {
+          nameNode.textContent = profile.name || "";
+        }
+
+        if (taglineNode && profile) {
+          taglineNode.textContent = profile.tagline || "";
+        }
+
+        if (affiliationNode && profile) {
+          affiliationNode.textContent = profile.affiliation || "";
+        }
+
+        if (locationNode && profile) {
+          locationNode.textContent = profile.location || "";
+        }
+
+        if (linksNode && profile && Array.isArray(profile.links)) {
+          profile.links.forEach(function (item) {
+            if (!filled(item.label) || !filled(item.href)) {
+              return;
+            }
+
+            var listItem = document.createElement("li");
+            var link = document.createElement("a");
+            link.href = item.href;
+            link.textContent = item.label;
+
+            if (item.href.indexOf("http") === 0) {
+              link.target = "_blank";
+              link.rel = "noreferrer";
+            }
+
+            listItem.appendChild(link);
+            linksNode.appendChild(listItem);
+          });
+        }
+
+        if (aboutNode && profile && filled(profile.bio)) {
+          aboutNode.textContent = profile.bio;
+        }
+
+        if (publicationsContainer) {
+          var featuredPublications = allPublications.filter(function (publication) {
+            return publication && publication.showOnHome;
+          });
+
+          if (!featuredPublications.length) {
+            featuredPublications = allPublications;
+          }
+
+          featuredPublications.slice(0, 2).forEach(function (publication) {
+            var article = document.createElement("article");
+            article.className = "card publication-card";
+
+            var body = document.createElement("div");
+            body.className = "card-body";
+
+            var head = document.createElement("div");
+            head.className = "card-head";
+
+            var title = document.createElement("h3");
+            title.textContent = publication.title || "";
+
+            var authors = document.createElement("p");
+            authors.className = "item-authors";
+            renderHighlightedAuthors(authors, publication.authors || "");
+            authors.hidden = !filled(publication.authors);
+
+            var meta = document.createElement("p");
+            meta.className = "item-meta";
+            meta.textContent = publication.meta || "";
+            meta.hidden = !filled(publication.meta);
+
+            head.appendChild(title);
+            body.appendChild(head);
+            body.appendChild(authors);
+            body.appendChild(meta);
+            article.appendChild(body);
+            appendActions(article, publication.actions);
+            publicationsContainer.appendChild(article);
+          });
+        }
+
+        if (projectsContainer) {
+          var featuredProjects = allProjects.filter(function (project) {
+            return project && project.showOnHome;
+          });
+
+          if (!featuredProjects.length) {
+            featuredProjects = allProjects;
+          }
+
+          featuredProjects.slice(0, 2).forEach(function (project) {
+            var link = document.createElement("a");
+            link.className = "project-tile";
+            link.href = "./project.html?slug=" + encodeURIComponent(project.slug);
+
+            if (project.tileMedia) {
+              var mediaTag = /\.(mp4|webm|ogg)$/i.test(project.tileMedia) ? "video" : "img";
+              var media = document.createElement(mediaTag);
+              media.className = "project-tile-media";
+
+              if (mediaTag === "video") {
+                media.src = project.tileMedia;
+                media.autoplay = true;
+                media.loop = true;
+                media.muted = true;
+                media.playsInline = true;
+                media.setAttribute("aria-label", project.title + " preview");
+              } else {
+                media.src = project.tileMedia;
+                media.alt = project.title + " preview";
+              }
+
+              link.appendChild(media);
+            }
+
+            var head = document.createElement("div");
+            head.className = "project-tile-head";
+
+            var title = document.createElement("h3");
+            title.textContent = project.title || "";
+            head.appendChild(title);
+            link.appendChild(head);
+            projectsContainer.appendChild(link);
+          });
+        }
+
+        if (updatesContainer) {
+          var featuredUpdates = allUpdates.filter(function (item) {
+            return item && item.showOnHome;
+          });
+
+          if (!featuredUpdates.length) {
+            featuredUpdates = allUpdates;
+          }
+
+          featuredUpdates.slice(0, 2).forEach(function (item) {
+            var article = document.createElement("article");
+            article.className = "timeline-item";
+
+            var date = document.createElement("span");
+            date.className = "timeline-date";
+            date.textContent = item.date || "";
+            date.hidden = !filled(item.date);
+
+            var title = document.createElement("h3");
+            title.textContent = item.title || "";
+
+            var copy = document.createElement("p");
+            copy.textContent = item.description || "";
+            copy.hidden = !filled(item.description);
+
+            article.appendChild(date);
+            article.appendChild(title);
+            article.appendChild(copy);
+            appendActions(article, item.actions);
+            updatesContainer.appendChild(article);
+          });
+        }
+
+        if (!button) {
+          return;
+        }
+
+        function syncThemeButton() {
+          var isDark = document.body.dataset.theme === "dark";
+          button.textContent = isDark ? "Light" : "Dark";
+          button.classList.toggle("is-active", isDark);
+        }
+
+        button.addEventListener("click", function () {
+          var nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+          document.body.dataset.theme = nextTheme;
+
+          try {
+            localStorage.setItem("theme-preference", nextTheme);
+          } catch (error) {}
+
+          syncThemeButton();
+        });
+
+        syncThemeButton();
+      })();
+    </script>
+  </body>
+</html>
