@@ -322,14 +322,14 @@ window.researchData = {
         mediaAlt: "Sky-hook Satellite Dynamics",
         links: [
           {
-            title: "Repo",
+            title: "Git Repo",
             href: "https://github.com/YashwanthProfile/Skyhook_Satellite_Sim.git",
             background: "#f2d8dc",
             color: "#1f2b35",
           },
           {
             title: "Open Slides",
-            href: "./reference-data/Sky_Hook_Project_PPT_Spacecraft_Dynamics_2025.pdf",
+            href: "./research-data/Sky_Hook_Project_PPT_Spacecraft_Dynamics_2025.pdf",
             background: "#dce8f6",
             color: "#1f2b35",
           },
