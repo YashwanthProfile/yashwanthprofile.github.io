@@ -2,7 +2,7 @@ window.cvData = {
   cvLinks: [
     {
       title: "Open CV PDF",
-      href: "./cv-data/Yashwanth_Resume_2024.pdf",
+      href: "./cv-data/Yashwanth_Resume_2026.pdf",
       background: "#dce8f6",
       color: "#1f2b35",
     },
