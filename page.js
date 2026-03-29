@@ -51,6 +51,10 @@ function getStoredThemePreference() {
   }
 }
 
+function getPreferredDefaultTheme() {
+  return window.matchMedia("(max-width: 980px)").matches ? "dark" : "light";
+}
+
 function saveThemePreference(value) {
   try {
     localStorage.setItem("theme-preference", value);
@@ -90,7 +94,39 @@ function renderHighlightedAuthors(node, authorsText) {
 
 function applyStoredTheme() {
   const storedTheme = getStoredThemePreference();
-  document.body.dataset.theme = storedTheme === "dark" ? "dark" : "light";
+  document.body.dataset.theme = storedTheme || getPreferredDefaultTheme();
+}
+
+function initializeMobileMenu() {
+  const topbar = document.querySelector(".topbar");
+  const button = getById("menu-toggle");
+  const nav = getById("top-nav");
+
+  if (!topbar || !button || !nav) {
+    return;
+  }
+
+  function syncMenuState(isOpen) {
+    topbar.classList.toggle("menu-open", isOpen);
+    button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    button.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+  }
+
+  button.addEventListener("click", () => {
+    syncMenuState(!topbar.classList.contains("menu-open"));
+  });
+
+  nav.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLElement && event.target.tagName.toLowerCase() === "a") {
+      syncMenuState(false);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (!window.matchMedia("(max-width: 720px)").matches) {
+      syncMenuState(false);
+    }
+  });
 }
 
 function renderBrandLink() {
@@ -1013,6 +1049,7 @@ function initializeSecondaryPages() {
   applyStoredTheme();
   renderBrandLink();
   createNav();
+  initializeMobileMenu();
 
   setText("cv-page-intro", getSiteData().pageContent?.cvIntro);
 

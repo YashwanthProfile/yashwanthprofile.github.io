@@ -14,6 +14,18 @@
     <div class="site-frame">
       <header class="topbar">
         <a class="brandmark" id="brand-link" href="./index.html">Home</a>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="top-nav"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <nav class="topnav" id="top-nav">
           <button class="theme-toggle" id="theme-toggle" type="button">Dark</button>
         </nav>
@@ -157,12 +169,28 @@
         var updatesContainer = document.getElementById("home-updates");
         var storedTheme;
         var button = document.getElementById("theme-toggle");
+        var menuButton = document.getElementById("menu-toggle");
+        var topbar = document.querySelector(".topbar");
         var allProjects = (window.researchData && window.researchData.projects) || [];
         var allPublications = (window.researchData && window.researchData.publications) || [];
         var allUpdates = (window.cvData && window.cvData.updates) || [];
 
         function filled(value) {
           return Array.isArray(value) ? value.length > 0 : Boolean(value && String(value).trim());
+        }
+
+        function defaultTheme() {
+          return window.matchMedia("(max-width: 980px)").matches ? "dark" : "light";
+        }
+
+        function syncMenuState(isOpen) {
+          if (!topbar || !menuButton) {
+            return;
+          }
+
+          topbar.classList.toggle("menu-open", isOpen);
+          menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
         }
 
         function renderHighlightedAuthors(node, authorsText) {
@@ -228,7 +256,7 @@
           storedTheme = null;
         }
 
-        document.body.dataset.theme = storedTheme === "dark" ? "dark" : "light";
+        document.body.dataset.theme = storedTheme || defaultTheme();
 
         if (brandNode && profile && filled(profile.name)) {
           brandNode.textContent = profile.name;
@@ -243,6 +271,12 @@
               link.className = "is-active";
             }
             navNode.insertBefore(link, button);
+          });
+
+          navNode.addEventListener("click", function (event) {
+            if (event.target && event.target.tagName && event.target.tagName.toLowerCase() === "a") {
+              syncMenuState(false);
+            }
           });
         }
 
@@ -418,6 +452,18 @@
 
         if (!button) {
           return;
+        }
+
+        if (menuButton) {
+          menuButton.addEventListener("click", function () {
+            syncMenuState(!topbar.classList.contains("menu-open"));
+          });
+
+          window.addEventListener("resize", function () {
+            if (!window.matchMedia("(max-width: 720px)").matches) {
+              syncMenuState(false);
+            }
+          });
         }
 
         function syncThemeButton() {

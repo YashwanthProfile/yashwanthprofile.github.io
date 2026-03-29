@@ -28,7 +28,7 @@ window.cvData = {
       actions: [
         {
           title: "Open Poster",
-          href: "./blog-data/Yashwanth_IGM_Poster_Feb2026.pdf",
+          href: "./cv-data/Yashwanth_IGM_Poster_Feb2026.pdf",
           background: "#f2d8dc",
           color: "#1f2b35",
         },
@@ -51,7 +51,7 @@ window.cvData = {
       actions: [
         {
           title: "Open Slides",
-          href: "./blog-data/Yashwanth_PhD_Comprehensive_PPT_2025.pdf",
+          href: "./cv-data/Yashwanth_PhD_Comprehensive_PPT_2025.pdf",
           background: "#dce8f6",
           color: "#1f2b35",
         },
