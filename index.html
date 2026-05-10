@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -27,7 +27,9 @@
           <span></span>
         </button>
         <nav class="topnav" id="top-nav">
-          <button class="theme-toggle" id="theme-toggle" type="button">Dark</button>
+          <button class="theme-toggle" id="theme-toggle" type="button">
+            Dark
+          </button>
         </nav>
       </header>
 
@@ -73,10 +75,10 @@
             <p class="section-kicker">About</p>
             <div class="section-body">
               <p id="home-about-text">
-                This website is set up as a minimal research portfolio inspired by
-                academic homepages and teaching sites. Replace this paragraph with a
-                short biography describing your research interests, current position,
-                and the questions that motivate your work.
+                This website is set up as a minimal research portfolio inspired
+                by academic homepages and teaching sites. Replace this paragraph
+                with a short biography describing your research interests,
+                current position, and the questions that motivate your work.
               </p>
             </div>
           </section>
@@ -118,7 +120,10 @@
             <div class="section-heading">
               <h2>Projects</h2>
             </div>
-            <div class="project-grid project-grid-featured" id="home-projects"></div>
+            <div
+              class="project-grid project-grid-featured"
+              id="home-projects"
+            ></div>
             <div class="section-tail">
               <a
                 class="section-more-link"
@@ -164,23 +169,30 @@
         var linksNode = document.getElementById("profile-links");
         var profile = window.siteData && window.siteData.profile;
         var navigation = (window.siteData && window.siteData.navigation) || [];
-        var publicationsContainer = document.getElementById("home-publications");
+        var publicationsContainer =
+          document.getElementById("home-publications");
         var projectsContainer = document.getElementById("home-projects");
         var updatesContainer = document.getElementById("home-updates");
         var storedTheme;
         var button = document.getElementById("theme-toggle");
         var menuButton = document.getElementById("menu-toggle");
         var topbar = document.querySelector(".topbar");
-        var allProjects = (window.researchData && window.researchData.projects) || [];
-        var allPublications = (window.researchData && window.researchData.publications) || [];
+        var allProjects =
+          (window.researchData && window.researchData.projects) || [];
+        var allPublications =
+          (window.researchData && window.researchData.publications) || [];
         var allUpdates = (window.cvData && window.cvData.updates) || [];
 
         function filled(value) {
-          return Array.isArray(value) ? value.length > 0 : Boolean(value && String(value).trim());
+          return Array.isArray(value)
+            ? value.length > 0
+            : Boolean(value && String(value).trim());
         }
 
         function defaultTheme() {
-          return window.matchMedia("(max-width: 980px)").matches ? "dark" : "light";
+          return window.matchMedia("(max-width: 980px)").matches
+            ? "dark"
+            : "light";
         }
 
         function syncMenuState(isOpen) {
@@ -190,33 +202,42 @@
 
           topbar.classList.toggle("menu-open", isOpen);
           menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
-          menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+          menuButton.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu",
+          );
         }
 
         function renderHighlightedAuthors(node, authorsText) {
-          var highlightName = profile && (profile.highlightAuthorName || profile.name);
+          var highlightName =
+            profile && (profile.highlightAuthorName || profile.name);
 
           node.textContent = "";
           if (!filled(authorsText)) {
             return;
           }
 
-          if (!filled(highlightName) || authorsText.indexOf(highlightName) === -1) {
+          if (
+            !filled(highlightName) ||
+            authorsText.indexOf(highlightName) === -1
+          ) {
             node.textContent = authorsText;
             return;
           }
 
-          authorsText.split(highlightName).forEach(function (part, index, parts) {
-            if (part) {
-              node.appendChild(document.createTextNode(part));
-            }
+          authorsText
+            .split(highlightName)
+            .forEach(function (part, index, parts) {
+              if (part) {
+                node.appendChild(document.createTextNode(part));
+              }
 
-            if (index < parts.length - 1) {
-              var strong = document.createElement("strong");
-              strong.textContent = highlightName;
-              node.appendChild(strong);
-            }
-          });
+              if (index < parts.length - 1) {
+                var strong = document.createElement("strong");
+                strong.textContent = highlightName;
+                node.appendChild(strong);
+              }
+            });
         }
 
         function appendActions(parent, actions) {
@@ -274,7 +295,11 @@
           });
 
           navNode.addEventListener("click", function (event) {
-            if (event.target && event.target.tagName && event.target.tagName.toLowerCase() === "a") {
+            if (
+              event.target &&
+              event.target.tagName &&
+              event.target.tagName.toLowerCase() === "a"
+            ) {
               syncMenuState(false);
             }
           });
@@ -331,9 +356,11 @@
         }
 
         if (publicationsContainer) {
-          var featuredPublications = allPublications.filter(function (publication) {
-            return publication && publication.showOnHome;
-          });
+          var featuredPublications = allPublications.filter(
+            function (publication) {
+              return publication && publication.showOnHome;
+            },
+          );
 
           if (!featuredPublications.length) {
             featuredPublications = allPublications;
@@ -384,10 +411,13 @@
           featuredProjects.slice(0, 2).forEach(function (project) {
             var link = document.createElement("a");
             link.className = "project-tile";
-            link.href = "./project.html?slug=" + encodeURIComponent(project.slug);
+            link.href =
+              "./project.html?slug=" + encodeURIComponent(project.slug);
 
             if (project.tileMedia) {
-              var mediaTag = /\.(mp4|webm|ogg)$/i.test(project.tileMedia) ? "video" : "img";
+              var mediaTag = /\.(mp4|webm|ogg)$/i.test(project.tileMedia)
+                ? "video"
+                : "img";
               var media = document.createElement(mediaTag);
               media.className = "project-tile-media";
 
@@ -473,7 +503,8 @@
         }
 
         button.addEventListener("click", function () {
-          var nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+          var nextTheme =
+            document.body.dataset.theme === "dark" ? "light" : "dark";
           document.body.dataset.theme = nextTheme;
 
           try {

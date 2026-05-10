@@ -22,7 +22,9 @@ function getCvData() {
 }
 
 function isFilled(value) {
-  return Array.isArray(value) ? value.length > 0 : Boolean(value && String(value).trim());
+  return Array.isArray(value)
+    ? value.length > 0
+    : Boolean(value && String(value).trim());
 }
 
 function isVideoFile(path) {
@@ -109,7 +111,10 @@ function initializeMobileMenu() {
   function syncMenuState(isOpen) {
     topbar.classList.toggle("menu-open", isOpen);
     button.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    button.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    button.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu",
+    );
   }
 
   button.addEventListener("click", () => {
@@ -117,7 +122,10 @@ function initializeMobileMenu() {
   });
 
   nav.addEventListener("click", (event) => {
-    if (event.target instanceof HTMLElement && event.target.tagName.toLowerCase() === "a") {
+    if (
+      event.target instanceof HTMLElement &&
+      event.target.tagName.toLowerCase() === "a"
+    ) {
       syncMenuState(false);
     }
   });
@@ -201,7 +209,9 @@ function createActionLink(action) {
 }
 
 function appendActions(parent, actions) {
-  const validActions = (actions || []).filter((action) => isFilled(action.title) && isFilled(action.href));
+  const validActions = (actions || []).filter(
+    (action) => isFilled(action.title) && isFilled(action.href),
+  );
   if (!validActions.length) {
     return;
   }
@@ -214,9 +224,15 @@ function appendActions(parent, actions) {
 
 function renderProjectGrid() {
   const grid = getById("project-grid");
-  const projects = (getResearchData().projects || []).filter((project) => isFilled(project.title) && isFilled(project.slug));
-  const ongoing = projects.filter((project) => (project.status || "").toLowerCase() === "ongoing");
-  const past = projects.filter((project) => (project.status || "").toLowerCase() === "past");
+  const projects = (getResearchData().projects || []).filter(
+    (project) => isFilled(project.title) && isFilled(project.slug),
+  );
+  const ongoing = projects.filter(
+    (project) => (project.status || "").toLowerCase() === "ongoing",
+  );
+  const past = projects.filter(
+    (project) => (project.status || "").toLowerCase() === "past",
+  );
 
   setSectionVisible("research-projects-section", projects.length > 0);
   if (!grid) {
@@ -229,7 +245,9 @@ function renderProjectGrid() {
     link.href = `./project.html?slug=${encodeURIComponent(project.slug)}`;
 
     if (isFilled(project.tileMedia)) {
-      const media = document.createElement(isVideoFile(project.tileMedia) ? "video" : "img");
+      const media = document.createElement(
+        isVideoFile(project.tileMedia) ? "video" : "img",
+      );
       media.className = "project-tile-media";
 
       if (media.tagName.toLowerCase() === "video") {
@@ -305,13 +323,24 @@ function renderProjectGrid() {
 
 function renderResearchPublicationTile() {
   const container = getById("research-publications-tile");
-  const publications = (getResearchData().publications || []).filter((item) => isFilled(item.title));
-  const journals = publications.filter((item) => (item.category || "").toLowerCase() === "journal");
-  const conferences = publications.filter((item) => (item.category || "").toLowerCase() === "conference");
-  const patents = publications.filter((item) => (item.category || "").toLowerCase() === "patent");
+  const publications = (getResearchData().publications || []).filter((item) =>
+    isFilled(item.title),
+  );
+  const journals = publications.filter(
+    (item) => (item.category || "").toLowerCase() === "journal",
+  );
+  const conferences = publications.filter(
+    (item) => (item.category || "").toLowerCase() === "conference",
+  );
+  const patents = publications.filter(
+    (item) => (item.category || "").toLowerCase() === "patent",
+  );
   const uncategorized = publications.filter((item) => !isFilled(item.category));
 
-  setSectionVisible("research-publications-tile-section", publications.length > 0);
+  setSectionVisible(
+    "research-publications-tile-section",
+    publications.length > 0,
+  );
   if (!container) {
     return;
   }
@@ -503,7 +532,10 @@ function getMarkdownDirectory(markdownPath) {
 
 function resolveMarkdownAssetUrls(html, markdownPath) {
   const parser = new DOMParser();
-  const documentFragment = parser.parseFromString(`<div>${html}</div>`, "text/html");
+  const documentFragment = parser.parseFromString(
+    `<div>${html}</div>`,
+    "text/html",
+  );
   const root = documentFragment.body.firstElementChild;
   const markdownDirectory = getMarkdownDirectory(markdownPath);
   const absoluteBase = new URL(markdownDirectory, window.location.href);
@@ -551,7 +583,10 @@ function escapeHtml(value) {
 function renderInlineMarkdown(text) {
   let value = escapeHtml(text);
 
-  value = value.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" />');
+  value = value.replace(
+    /!\[([^\]]*)\]\(([^)]+)\)/g,
+    '<img alt="$1" src="$2" />',
+  );
   value = value.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
   value = value.replace(/`([^`]+)`/g, "<code>$1</code>");
   value = value.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
@@ -584,7 +619,9 @@ function fallbackMarkdownToHtml(markdown) {
       return;
     }
 
-    html.push(`<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`);
+    html.push(
+      `<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`,
+    );
     listItems = [];
   }
 
@@ -593,7 +630,9 @@ function fallbackMarkdownToHtml(markdown) {
       return;
     }
 
-    html.push(`<blockquote><p>${renderInlineMarkdown(blockquoteLines.join(" "))}</p></blockquote>`);
+    html.push(
+      `<blockquote><p>${renderInlineMarkdown(blockquoteLines.join(" "))}</p></blockquote>`,
+    );
     blockquoteLines = [];
     inBlockquote = false;
   }
@@ -611,8 +650,12 @@ function fallbackMarkdownToHtml(markdown) {
         codeLanguage = line.trim().slice(3).trim();
         codeLines = [];
       } else {
-        const languageClass = codeLanguage ? ` class="language-${escapeHtml(codeLanguage)}"` : "";
-        html.push(`<pre><code${languageClass}>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+        const languageClass = codeLanguage
+          ? ` class="language-${escapeHtml(codeLanguage)}"`
+          : "";
+        html.push(
+          `<pre><code${languageClass}>${escapeHtml(codeLines.join("\n"))}</code></pre>`,
+        );
         inCodeBlock = false;
         codeLanguage = "";
         codeLines = [];
@@ -649,7 +692,9 @@ function fallbackMarkdownToHtml(markdown) {
       flushParagraph();
       flushList();
       const level = Math.min(headingMatch[1].length, 6);
-      html.push(`<h${level}>${renderInlineMarkdown(headingMatch[2].trim())}</h${level}>`);
+      html.push(
+        `<h${level}>${renderInlineMarkdown(headingMatch[2].trim())}</h${level}>`,
+      );
       return;
     }
 
@@ -695,7 +740,11 @@ function renderMarkdownContent(body, markdown, markdownPath, noteTitle) {
   body.innerHTML = resolveMarkdownAssetUrls(renderedHtml, markdownPath);
 
   const firstHeading = body.querySelector("h1");
-  if (firstHeading && isFilled(noteTitle) && firstHeading.textContent.trim() === String(noteTitle).trim()) {
+  if (
+    firstHeading &&
+    isFilled(noteTitle) &&
+    firstHeading.textContent.trim() === String(noteTitle).trim()
+  ) {
     firstHeading.remove();
   }
 
@@ -792,7 +841,9 @@ function extractMarkdownOutline(markdown, noteTitle) {
       return true;
     }
 
-    return !isFilled(noteTitle) || item.title.trim() !== String(noteTitle).trim();
+    return (
+      !isFilled(noteTitle) || item.title.trim() !== String(noteTitle).trim()
+    );
   });
 }
 
@@ -802,7 +853,9 @@ function applyMarkdownHeadingAnchors(body, outline) {
 
   h2Nodes.forEach((heading, index) => {
     const item = h2Outline[index];
-    heading.id = item ? item.id : slugifyHeading(heading.textContent, `section-${index + 1}`);
+    heading.id = item
+      ? item.id
+      : slugifyHeading(heading.textContent, `section-${index + 1}`);
   });
 }
 
@@ -833,7 +886,9 @@ function renderNoteOutline(outline) {
 
 function renderCvActions() {
   const container = getById("cv-actions");
-  const items = (getCvData().cvLinks || []).filter((item) => isFilled(item.title) && isFilled(item.href));
+  const items = (getCvData().cvLinks || []).filter(
+    (item) => isFilled(item.title) && isFilled(item.href),
+  );
 
   setSectionVisible("cv-actions-section", items.length > 0);
   if (!container) {
@@ -855,18 +910,25 @@ async function renderNoteDetail() {
 
   const params = new URLSearchParams(window.location.search);
   const requestedSlug = params.get("slug");
-  const note = (getBlogData().notes || []).find((entry) => entry.slug === requestedSlug);
+  const note = (getBlogData().notes || []).find(
+    (entry) => entry.slug === requestedSlug,
+  );
 
   if (!note) {
     setText("note-detail-title", "Note not found");
-    setText("note-detail-summary", "Add a matching note slug in blog-data/blog-data.js.");
+    setText(
+      "note-detail-summary",
+      "Add a matching note slug in blog-data/blog-data.js.",
+    );
     return;
   }
 
   const article = note.article || {};
   const markdownPath = note.markdown || article.markdown || "";
   const markdownContent = note.markdownContent || article.markdownContent || "";
-  const sections = (article.sections || []).filter((section) => isFilled(section.heading) || isFilled(section.text));
+  const sections = (article.sections || []).filter(
+    (section) => isFilled(section.heading) || isFilled(section.text),
+  );
   const noteDetailHref = `./note.html?slug=${requestedSlug}`;
   const actions = (article.actions || note.actions || []).filter((action) => {
     if (!isFilled(action.title) || !isFilled(action.href)) {
@@ -879,7 +941,10 @@ async function renderNoteDetail() {
   document.title = `${note.title} | ${getSiteData().profile?.name || "Portfolio"}`;
   setText("note-detail-meta", note.meta || "Notes");
   setText("note-detail-title", note.title);
-  setText("note-detail-summary", isFilled(markdownPath) ? "" : (article.summary || note.description));
+  setText(
+    "note-detail-summary",
+    isFilled(markdownPath) ? "" : article.summary || note.description,
+  );
 
   const titleNode = getById("note-detail-title");
   const summaryNode = getById("note-detail-summary");
@@ -887,7 +952,10 @@ async function renderNoteDetail() {
     titleNode.hidden = isFilled(markdownPath) || isFilled(markdownContent);
   }
   if (summaryNode) {
-    summaryNode.hidden = isFilled(markdownPath) || isFilled(markdownContent) || !isFilled(summaryNode.textContent);
+    summaryNode.hidden =
+      isFilled(markdownPath) ||
+      isFilled(markdownContent) ||
+      !isFilled(summaryNode.textContent);
   }
 
   const actionsContainer = getById("note-detail-actions");
@@ -904,7 +972,11 @@ async function renderNoteDetail() {
   if (body) {
     if (isFilled(markdownPath)) {
       try {
-        const fetchedMarkdown = await renderMarkdownNote(body, markdownPath, note.title);
+        const fetchedMarkdown = await renderMarkdownNote(
+          body,
+          markdownPath,
+          note.title,
+        );
         outline = extractMarkdownOutline(fetchedMarkdown, note.title);
         applyMarkdownHeadingAnchors(body, outline);
       } catch (error) {
@@ -961,20 +1033,31 @@ function renderProjectDetail() {
 
   const params = new URLSearchParams(window.location.search);
   const requestedSlug = params.get("slug");
-  const project = (getResearchData().projects || []).find((entry) => entry.slug === requestedSlug);
+  const project = (getResearchData().projects || []).find(
+    (entry) => entry.slug === requestedSlug,
+  );
 
   if (!project) {
     setText("project-detail-title", "Project not found");
-    setText("project-detail-summary", "Add a matching project slug in research-data/research-data.js.");
+    setText(
+      "project-detail-summary",
+      "Add a matching project slug in research-data/research-data.js.",
+    );
     setSectionVisible("project-detail-links-section", false);
     setSectionVisible("project-detail-publications-section", false);
     return;
   }
 
   const detail = project.detail || {};
-  const detailSections = (detail.sections || []).filter((section) => isFilled(section.heading) || isFilled(section.text));
-  const detailLinks = (detail.links || []).filter((link) => isFilled(link.title) && isFilled(link.href));
-  const relatedPublications = resolveRelatedPublications(detail.relatedPublications || []);
+  const detailSections = (detail.sections || []).filter(
+    (section) => isFilled(section.heading) || isFilled(section.text),
+  );
+  const detailLinks = (detail.links || []).filter(
+    (link) => isFilled(link.title) && isFilled(link.href),
+  );
+  const relatedPublications = resolveRelatedPublications(
+    detail.relatedPublications || [],
+  );
 
   document.title = `${project.title} | ${getSiteData().profile?.name || "Portfolio"}`;
   setText("project-detail-kicker", project.meta || project.status);
@@ -987,7 +1070,9 @@ function renderProjectDetail() {
     media.classList.toggle("has-media", isFilled(detail.mediaSrc));
 
     if (isFilled(detail.mediaSrc)) {
-      const mediaElement = document.createElement(isVideoFile(detail.mediaSrc) ? "video" : "img");
+      const mediaElement = document.createElement(
+        isVideoFile(detail.mediaSrc) ? "video" : "img",
+      );
       mediaElement.className = "detail-media-image";
 
       if (mediaElement.tagName.toLowerCase() === "video") {
@@ -996,7 +1081,10 @@ function renderProjectDetail() {
         mediaElement.loop = true;
         mediaElement.muted = true;
         mediaElement.playsInline = true;
-        mediaElement.setAttribute("aria-label", detail.mediaAlt || `${project.title} preview`);
+        mediaElement.setAttribute(
+          "aria-label",
+          detail.mediaAlt || `${project.title} preview`,
+        );
       } else {
         mediaElement.src = detail.mediaSrc;
         mediaElement.alt = detail.mediaAlt || `${project.title} preview`;
@@ -1034,15 +1122,23 @@ function renderProjectDetail() {
 
   const links = getById("project-detail-links");
   if (links) {
-    detailLinks.forEach((action) => links.appendChild(createActionLink(action)));
+    detailLinks.forEach((action) =>
+      links.appendChild(createActionLink(action)),
+    );
   }
   setSectionVisible("project-detail-links-section", detailLinks.length > 0);
 
   const publications = getById("project-detail-publications");
   if (publications) {
-    renderRelatedProjectPublications("project-detail-publications", relatedPublications);
+    renderRelatedProjectPublications(
+      "project-detail-publications",
+      relatedPublications,
+    );
   }
-  setSectionVisible("project-detail-publications-section", relatedPublications.length > 0);
+  setSectionVisible(
+    "project-detail-publications-section",
+    relatedPublications.length > 0,
+  );
 }
 
 function initializeSecondaryPages() {

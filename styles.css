@@ -299,7 +299,7 @@ a {
   object-fit: cover;
   border-radius: 22px;
   background: var(--accent-soft);
-  filter: grayscale(1) brightness(1.12) contrast(0.82);
+  /* filter: grayscale(1) brightness(1.12) contrast(0.82); */
 }
 
 body[data-theme="dark"] .avatar-image {
@@ -977,7 +977,9 @@ body[data-theme="dark"] .avatar-image {
 }
 
 .note-article-body code {
-  font-family: "SFMono-Regular", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family:
+    "SFMono-Regular", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
   font-size: 0.93em;
 }
 
