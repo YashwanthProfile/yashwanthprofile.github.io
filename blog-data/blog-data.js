@@ -25,6 +25,21 @@ window.blogData = {
       ],
     },
     {
+      title: "Notes on intro to SVD",
+      meta: "Technical Notes",
+      description:
+        "Notes from the 8th colloquium of our lab. The session was aimed to building motivation and intuition for singular value decomposition through a more geometric approach. There will continuation of this building towards PCA, DMD and eventually Koopan Operators",
+      showOnHome: true,
+      actions: [
+        {
+          title: "Open PDF",
+          href: "./blog-data/Yashwanth_Colloquium-8_Motivation_to_SVD.pdf",
+          background: "#dce8f6",
+          color: "#1f2b35",
+        },
+      ],
+    },
+    {
       slug: "dummy-notes-entry",
       title: "Dummy Notes Entry",
       meta: "Reading Notes",
